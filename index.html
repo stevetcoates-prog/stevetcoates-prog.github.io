@@ -1,125 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Our Timeline</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 30px;
-    }
+<title>Our Timeline</title>
 
-    h1 {
-      margin-bottom: 30px;
-    }
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+    padding:30px;
+}
 
-    .timer {
-      background: #1c1c1c;
-      border-radius: 18px;
-      padding: 25px;
-      margin: 20px auto;
-      max-width: 500px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.08);
-    }
+h1{
+    color:#ff7eb9;
+    margin-top:40px;
+    margin-bottom:25px;
+    font-size:42px;
+}
 
-    .timer h2 {
-      margin-top: 0;
-      color: #ff7eb9;
-    }
+.timer{
+    background:#1d1d1d;
+    max-width:550px;
+    margin:20px auto;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(255,255,255,.08);
+}
 
-    .time {
-      font-size: 26px;
-      line-height: 1.6;
-    }
+.timer h2{
+    margin-top:0;
+    color:#ffd166;
+}
 
-    .since {
-      color: #aaa;
-      font-size: 14px;
-      margin-top: 15px;
-    }
-  </style>
+.time{
+    font-size:28px;
+    line-height:1.6;
+}
+
+.since{
+    color:#aaa;
+    margin-top:15px;
+    font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Our Timeline ❤️</h1>
+<h1>❤️ Our Love Story ❤️</h1>
 
-<div id="timers"></div>
+<div id="loveStory"></div>
+
+<h1>👶 Our Bundles of Joy 👶</h1>
+
+<div id="kids"></div>
 
 <script>
-const events = [
-  {
-    title: "Since we started talking",
-    date: "2011-06-11T13:00:00"
-  },
-  {
-    title: "First time I said I love you",
-    date: "2011-08-12T22:30:00"
-  },
-  {
-    title: "Proposal",
-    date: "2012-07-18T18:00:00"
-  }
-  
+
+const loveStory = [
+{
+    title:"Since we started talking",
+    date:"2024-01-01T08:00:00"
+},
+{
+    title:"First time I said I love you",
+    date:"2024-02-14T21:30:00"
+},
+{
+    title:"Proposal",
+    date:"2025-06-01T18:00:00"
+}
 ];
-  <h1>Our Bundles of Joy</h1>
-  <div id="timers"></div>
-  const events = [
-    {
-      title: "Brooklynn",
-      date: "2008-06-03-09T11:00:00"
-    },
-    {
-      title: "Logan",
-      date: "2015-08-01T10:29:00"
-    }
 
-function updateTimers() {
-  const container = document.getElementById("timers");
-  container.innerHTML = "";
+const kids = [
+{
+    title:"Brooklynn",
+    date:"2008-06-03T09:11:00"
+},
+{
+    title:"Logan",
+    date:"2015-08-01T10:29:00"
+}
+];
 
-  events.forEach(event => {
-    const startDate = new Date(event.date);
-    const now = new Date();
+function renderTimers(list, elementId){
 
-    let diff = now - startDate;
+    const container=document.getElementById(elementId);
+    container.innerHTML="";
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    diff %= (1000 * 60 * 60 * 24);
+    list.forEach(event=>{
 
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    diff %= (1000 * 60 * 60);
+        const startDate=new Date(event.date);
+        const now=new Date();
 
-    const minutes = Math.floor(diff / (1000 * 60));
-    diff %= (1000 * 60);
+        let diff=now-startDate;
 
-    const seconds = Math.floor(diff / 1000);
+        const days=Math.floor(diff/(1000*60*60*24));
+        diff%=1000*60*60*24;
 
-    container.innerHTML += `
-      <div class="timer">
-        <h2>${event.title}</h2>
-        <div class="time">
-          ${days} days<br>
-          ${hours} hours<br>
-          ${minutes} minutes<br>
-          ${seconds} seconds
+        const hours=Math.floor(diff/(1000*60*60));
+        diff%=1000*60*60;
+
+        const minutes=Math.floor(diff/(1000*60));
+        diff%=1000*60;
+
+        const seconds=Math.floor(diff/1000);
+
+        container.innerHTML += `
+        <div class="timer">
+
+            <h2>${event.title}</h2>
+
+            <div class="time">
+                ${days.toLocaleString()} Days<br>
+                ${hours} Hours<br>
+                ${minutes} Minutes<br>
+                ${seconds} Seconds
+            </div>
+
+            <div class="since">
+                Since ${startDate.toLocaleString()}
+            </div>
+
         </div>
-        <div class="since">
-          Since: ${startDate.toLocaleString()}
-        </div>
-      </div>
-    `;
-  });
+        `;
+    });
+
 }
 
-updateTimers();
-setInterval(updateTimers, 1000);
+function update(){
+
+    renderTimers(loveStory,"loveStory");
+    renderTimers(kids,"kids");
+
+}
+
+update();
+setInterval(update,1000);
+
 </script>
 
 </body>
+</html>
 </html>
