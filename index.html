@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Our Timeline</title>
+<title>❤️ Timeline ❤️</title>
 
 <style>
 body{
@@ -52,9 +52,9 @@ h1{
 
 <body>
 
-<h1>❤️ Our Timeline ❤️</h1>
+<h1>❤️ Timeline ❤️</h1>
 
-<div id="timeline"></div>
+<div id="loveStory"></div>
 
 <h1>👶 Our Bundles of Joy 👶</h1>
 
@@ -62,7 +62,7 @@ h1{
 
 <script>
 
-const timeline = [
+const loveStory = [
 {
     title:"Since we started talking",
     date:"2011-06-11T13:00:00"
@@ -113,7 +113,6 @@ function renderTimers(list, elementId){
 
         container.innerHTML += `
         <div class="timer">
-
             <h2>${event.title}</h2>
 
             <div class="time">
@@ -126,18 +125,14 @@ function renderTimers(list, elementId){
             <div class="since">
                 Since ${startDate.toLocaleString()}
             </div>
-
         </div>
         `;
     });
-
 }
 
 function update(){
-
     renderTimers(loveStory,"loveStory");
     renderTimers(kids,"kids");
-
 }
 
 update();
@@ -146,5 +141,4 @@ setInterval(update,1000);
 </script>
 
 </body>
-</html>
 </html>
