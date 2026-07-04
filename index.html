@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Timeline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .timer {
+      background: #1c1c1c;
+      border-radius: 18px;
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    .timer h2 {
+      margin-top: 0;
+      color: #ff7eb9;
+    }
+
+    .time {
+      font-size: 26px;
+      line-height: 1.6;
+    }
+
+    .since {
+      color: #aaa;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Our Timeline ❤️</h1>
+
+<div id="timers"></div>
+
+<script>
+const events = [
+  {
+    title: "Since we started talking",
+    date: "2011-06-11T13:00:00"
+  },
+  {
+    title: "First time I said I love you",
+    date: "2011-08-12T22:30:00"
+  },
+  {
+    title: "Proposal",
+    date: "2012-07-18T18:00:00"
+  }
+];
+
+function updateTimers() {
+  const container = document.getElementById("timers");
+  container.innerHTML = "";
+
+  events.forEach(event => {
+    const startDate = new Date(event.date);
+    const now = new Date();
+
+    let diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff %= (1000 * 60 * 60 * 24);
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    diff %= (1000 * 60 * 60);
+
+    const minutes = Math.floor(diff / (1000 * 60));
+    diff %= (1000 * 60);
+
+    const seconds = Math.floor(diff / 1000);
+
+    container.innerHTML += `
+      <div class="timer">
+        <h2>${event.title}</h2>
+        <div class="time">
+          ${days} days<br>
+          ${hours} hours<br>
+          ${minutes} minutes<br>
+          ${seconds} seconds
+        </div>
+        <div class="since">
+          Since: ${startDate.toLocaleString()}
+        </div>
+      </div>
+    `;
+  });
+}
+
+updateTimers();
+setInterval(updateTimers, 1000);
+</script>
+
+</body>
+</html>
